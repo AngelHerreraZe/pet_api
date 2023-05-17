@@ -14,20 +14,52 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Pets.init({
-    id: DataTypes.INTEGER,
-    name: DataTypes.STRING,
-    birthdate: DataTypes.DATE,
-    genre: DataTypes.ENUM,
-    specie: DataTypes.STRING,
-    race: DataTypes.STRING,
-    weight: DataTypes.FLOAT,
-    height: DataTypes.FLOAT,
-    user_id: DataTypes.INTEGER,
-    petimgUrl: DataTypes.STRING,
-    status: DataTypes.ENUM
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
+    name: {
+      type: DataTypes.STRING(30),
+      allowNull: false
+    },
+    birthdate: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    genre: {
+      type: DataTypes.ENUM("MALE","FEMALE")
+    },
+    specie: {
+      type: DataTypes.STRING(20),
+      allowNull: false
+    },
+    race: {
+      type: DataTypes.STRING(20)
+    },
+    weight: {
+      type: DataTypes.FLOAT
+    },
+    height: {
+      type: DataTypes.FLOAT
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      field: 'user_id'
+    },
+    petimgUrl: {
+      type: DataTypes.STRING,
+      field: 'petimg_url'
+    },
+    status: {
+      type: DataTypes.STRING
+    }
   }, {
     sequelize,
     modelName: 'Pets',
+    tableName: 'pets'
   });
   return Pets;
 };

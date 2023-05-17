@@ -2,30 +2,30 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Pets', {
+    await queryInterface.createTable('pets', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(30),
+        allowNull: false
       },
       birthdate: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false
       },
       genre: {
-        type: Sequelize.ENUM
+        type: Sequelize.ENUM("MALE","FEMALE")
       },
       specie: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(20),
+        allowNull: false
       },
       race: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(20)
       },
       weight: {
         type: Sequelize.FLOAT
@@ -33,11 +33,14 @@ module.exports = {
       height: {
         type: Sequelize.FLOAT
       },
-      user_id: {
-        type: Sequelize.INTEGER
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        field: 'user_id'
       },
       petimgUrl: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        field: 'petimg_url'
       },
       status: {
         type: Sequelize.ENUM
@@ -53,6 +56,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Pets');
+    await queryInterface.dropTable('pets');
   }
 };

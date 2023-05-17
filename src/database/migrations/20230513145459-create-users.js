@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('users', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,28 +10,35 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(30)
       },
       username: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(30),
+        allowNull: false
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(80),
+        allowNull: false
       },
       password: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       passwordChangeAt: {
-        type: Sequelize.STRING
+        type: Sequelize.DATE
       },
       role: {
-        type: Sequelize.ENUM
+        type: Sequelize.ENUM("USER","ADMIN","EMPLOYE"),
+        defaultValue: "USER",
       },
       profileImgUrl: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        field: 'profile_img_url',
+        defaultValue: 'https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png'  
       },
       status: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
       },
       createdAt: {
         allowNull: false,
@@ -44,6 +51,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Users');
+    await queryInterface.dropTable('users');
   }
 };

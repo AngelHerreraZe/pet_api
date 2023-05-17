@@ -14,15 +14,40 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Exams.init({
-    exam: DataTypes.STRING,
-    description: DataTypes.TEXT,
-    date: DataTypes.DATE,
-    result: DataTypes.STRING,
-    clinicHistoryId: DataTypes.INTEGER,
-    status: DataTypes.STRING
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
+    exam: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    date: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    result: {
+      type: DataTypes.STRING
+    },
+    clinicHistoryId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      field: 'clinic_history_id'
+    },
+    status: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
   }, {
     sequelize,
     modelName: 'Exams',
+    tableName: 'exams'
   });
   return Exams;
 };
