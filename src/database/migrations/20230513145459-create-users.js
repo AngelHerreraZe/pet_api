@@ -28,7 +28,7 @@ module.exports = {
         type: Sequelize.DATE
       },
       role: {
-        type: Sequelize.ENUM("USER","ADMIN","EMPLOYE"),
+        type: Sequelize.STRING(20),
         defaultValue: "USER",
       },
       profileImgUrl: {

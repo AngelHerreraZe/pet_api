@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     genre: {
-      type: DataTypes.ENUM("MALE","FEMALE")
+      type: DataTypes.STRING(20)
     },
     specie: {
       type: DataTypes.STRING(20),
@@ -54,7 +54,7 @@ module.exports = (sequelize, DataTypes) => {
       field: 'petimg_url'
     },
     status: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING(20)
     }
   }, {
     sequelize,

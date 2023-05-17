@@ -18,7 +18,7 @@ module.exports = {
         allowNull: false
       },
       genre: {
-        type: Sequelize.ENUM("MALE","FEMALE")
+        type: Sequelize.STRING(20)
       },
       specie: {
         type: Sequelize.STRING(20),
@@ -43,7 +43,7 @@ module.exports = {
         field: 'petimg_url'
       },
       status: {
-        type: Sequelize.ENUM
+        type: Sequelize.STRING(20)
       },
       createdAt: {
         allowNull: false,

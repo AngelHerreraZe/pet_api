@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
     },
     role: {
-      type: DataTypes.ENUM("USER","ADMIN","EMPLOYE"),
+      type: DataTypes.STRING(20),
       defaultValue: "USER",
     },
     profileImgUrl: {
