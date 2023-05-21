@@ -13,23 +13,23 @@ module.exports = {
         type: Sequelize.STRING
       },
       initDate: {
-        type: Sequelize.DATE,
         allowNull: false,
-        field: 'init_date'
+        field: 'init_date',
+        type: Sequelize.DATE,
       },
       endDate: {
-        type: Sequelize.DATE,
         allowNull: false,
-        field: 'end_date'
+        field: 'end_date',
+        type: Sequelize.DATE,
       },
       clinicHistoryId: {
-        type: Sequelize.INTEGER,
         allowNull: false,
-        field: 'clinic_history_id'
+        field: 'clinic_history_id',
+        type: Sequelize.INTEGER,
       },
       status: {
+        allowNull: false,
         type: Sequelize.STRING,
-        allowNull: false
       },
       createdAt: {
         allowNull: false,

@@ -10,28 +10,28 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       exam: {
+        allowNull: false,
         type: Sequelize.STRING,
-        allowNull: false
       },
       description: {
+        allowNull: false,
         type: Sequelize.TEXT,
-        allowNull: false
       },
       date: {
+        allowNull: false,
         type: Sequelize.DATE,
-        allowNull: false
       },
       result: {
         type: Sequelize.STRING
       },
       clinicHistoryId: {
-        type: Sequelize.INTEGER,
         allowNull: false,
-        field: 'clinic_history_id'
+        field: 'clinic_history_id',
+        type: Sequelize.INTEGER,
       },
       status: {
+        allowNull: false,
         type: Sequelize.STRING,
-        allowNull: false
       },
       createdAt: {
         allowNull: false,

@@ -10,22 +10,22 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING(30),
-        allowNull: false
+        allowNull: false,
+        type: Sequelize.STRING,
       },
       birthdate: {
+        allowNull: false,
         type: Sequelize.DATE,
-        allowNull: false
       },
       genre: {
-        type: Sequelize.STRING(20)
+        type: Sequelize.STRING
       },
       specie: {
-        type: Sequelize.STRING(20),
-        allowNull: false
+        allowNull: false,
+        type: Sequelize.STRING,
       },
       race: {
-        type: Sequelize.STRING(20)
+        type: Sequelize.STRING
       },
       weight: {
         type: Sequelize.FLOAT
@@ -34,16 +34,16 @@ module.exports = {
         type: Sequelize.FLOAT
       },
       userId: {
-        type: Sequelize.INTEGER,
         allowNull: false,
-        field: 'user_id'
+        field: 'user_id',
+        type: Sequelize.INTEGER,
       },
       petimgUrl: {
+        field: 'petimg_url',
         type: Sequelize.STRING,
-        field: 'petimg_url'
       },
       status: {
-        type: Sequelize.STRING(20)
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

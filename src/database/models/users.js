@@ -1,16 +1,12 @@
 'use strict';
+const bcrypt = require('bcrypt');
 const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Users extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      Users.hasMany(models.Pets, {as: 'pet', foreignKey: 'userId'});
     }
   }
   Users.init({
@@ -21,15 +17,17 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     },
     name: {
-      type: DataTypes.STRING(30),
+      type: DataTypes.STRING,
     },
     username: {
-      types: DataTypes.STRING(30),
-      allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
     },
     email: {
-      type: DataTypes.STRING(80),
-      allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
     },
     password: {
       type: DataTypes.STRING,
@@ -39,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
     },
     role: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING,
       defaultValue: "USER",
     },
     profileImgUrl: {
@@ -50,11 +48,23 @@ module.exports = (sequelize, DataTypes) => {
     status: {
       type: DataTypes.BOOLEAN,
       defaultValue: true
-    }
-  }, {
+    },
+    
+  },{
     sequelize,
     tableName: 'users',
     modelName: 'Users',
+    hooks: {
+      beforeCreate: async (user) => {
+        try {
+          const salt = await bcrypt.genSalt(10);
+          const passwordHash = await bcrypt.hash(user.password, salt);
+          user.password = passwordHash;
+        } catch (error) {
+          throw error;
+        }
+      }
+    }
   });
   return Users;
 };

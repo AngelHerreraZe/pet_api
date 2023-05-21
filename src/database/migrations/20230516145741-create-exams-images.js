@@ -10,20 +10,20 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       title: {
+        allowNull: false,
         type: Sequelize.STRING,
-        allowNull: false
       },
       description: {
+        allowNull: false,
         type: Sequelize.TEXT,
-        allowNull: false
       },
       url: {
         type: Sequelize.STRING
       },
       examsId: {
-        type: Sequelize.INTEGER,
         allowNull: false,
-        field: 'exams_id'
+        field: 'exams_id',
+        type: Sequelize.INTEGER,
       },
       stats: {
         type: Sequelize.STRING

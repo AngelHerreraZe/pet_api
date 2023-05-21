@@ -4,13 +4,10 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Pets extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      Pets.hasMany(models.Appoinment, {as: 'appoinment', foreignKey: 'petId'});
+      Pets.hasMany(models.ClinicHistory, {as: 'clinichistory', foreignKey: 'petId'});
+      Pets.belongsTo(models.Users, {as: 'user', foreignKey: 'userId'});
     }
   }
   Pets.init({
@@ -21,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     },
     name: {
-      type: DataTypes.STRING(30),
+      type: DataTypes.STRING,
       allowNull: false
     },
     birthdate: {
@@ -29,14 +26,14 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     genre: {
-      type: DataTypes.STRING(20)
+      type: DataTypes.STRING
     },
     specie: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING,
       allowNull: false
     },
     race: {
-      type: DataTypes.STRING(20)
+      type: DataTypes.STRING
     },
     weight: {
       type: DataTypes.FLOAT

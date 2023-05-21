@@ -10,25 +10,25 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       title: {
-        type: Sequelize.STRING,
         allowNull: false,
+        type: Sequelize.STRING,
       },
       description: {
+        allowNull: false,
         type: Sequelize.TEXT,
-        allowNull: false
       },
       url: {
-        type: Sequelize.STRING,
         allowNull: false,
+        type: Sequelize.STRING,
       },
       clinicHistoryId: {
-        type: Sequelize.INTEGER,
         allowNull: false,
-        field: 'clinic_history_id'
+        field: 'clinic_history_id',
+        type: Sequelize.INTEGER,
       },
       status: {
+        allowNull: false,
         type: Sequelize.STRING,
-        allowNull: false
       },
       createdAt: {
         allowNull: false,

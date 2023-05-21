@@ -5,6 +5,8 @@ const hpp = require('hpp');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 const xss = require('xss-clean');
+const ApiRoutes = require('./routes');
+const errorHandlerRouter = require('./routes/error.handler.routes');
 
 const app = express();
 
@@ -26,11 +28,8 @@ app.use(hpp());
 
 app.use('/api/v1', limiter);
 
+ApiRoutes(app);
 
-//rutas
-
-//TODO: excepciones de rutas no encontradas
-
-//TODO: controlador de manejo de errores
+errorHandlerRouter(app);
 
 module.exports = app;

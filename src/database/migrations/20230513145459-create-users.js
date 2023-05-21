@@ -10,35 +10,37 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING(30)
+        type: Sequelize.STRING
       },
       username: {
-        type: Sequelize.STRING(30),
-        allowNull: false
+        unique: true,
+        allowNull: false,
+        type: Sequelize.STRING,
       },
       email: {
-        type: Sequelize.STRING(80),
-        allowNull: false
+        unique: true,
+        allowNull: false,
+        type: Sequelize.STRING,
       },
       password: {
+        allowNull: false,
         type: Sequelize.STRING,
-        allowNull: false
       },
       passwordChangeAt: {
         type: Sequelize.DATE
       },
       role: {
-        type: Sequelize.STRING(20),
         defaultValue: "USER",
+        type: Sequelize.STRING,
       },
       profileImgUrl: {
-        type: Sequelize.STRING,
         field: 'profile_img_url',
-        defaultValue: 'https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png'  
+        defaultValue: 'https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png',
+        type: Sequelize.STRING,
       },
       status: {
+        defaultValue: true,
         type: Sequelize.BOOLEAN,
-        defaultValue: true
       },
       createdAt: {
         allowNull: false,

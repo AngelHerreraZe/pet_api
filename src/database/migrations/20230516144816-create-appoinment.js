@@ -9,9 +9,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
       date: {
         type: Sequelize.DATE
       },
@@ -19,10 +16,12 @@ module.exports = {
         type: Sequelize.STRING
       },
       petId: {
-        type: Sequelize.INTEGER
+        field: 'pet_id',
+        type: Sequelize.INTEGER,
       },
       vetId: {
-        type: Sequelize.INTEGER
+        field: 'vet_id',
+        type: Sequelize.INTEGER,
       },
       status: {
         type: Sequelize.STRING

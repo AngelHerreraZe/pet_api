@@ -5,6 +5,8 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Vet extends Model {
     static associate(models) {
+      Vet.hasMany(models.ClinicHistory, {as: 'clinichistory', foreignKey: 'vetId'});
+      Vet.hasMany(models.Appoinment, {as: 'appoinment', foreignKey: 'vetId'});
     }
   }
   Vet.init({
@@ -15,15 +17,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     },
     name: {
-      type: DataTypes.STRING(150),
+      type: DataTypes.STRING,
       allowNull: false
     },
     specialty: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING,
       allowNull: false
     },
     status: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING,
       allowNull: false
     }
   }, {

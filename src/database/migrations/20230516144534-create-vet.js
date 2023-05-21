@@ -10,16 +10,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING(150),
-        allowNull: false
+        allowNull: false,
+        type: Sequelize.STRING,
       },
       specialty: {
-        type: Sequelize.STRING(50),
-        allowNull: false
+        allowNull: false,
+        type: Sequelize.STRING,
       },
       status: {
-        type: Sequelize.STRING(20),
-        allowNull: false
+        allowNull: false,
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
