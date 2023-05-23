@@ -5,8 +5,8 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Exams extends Model {
     static associate(models) {
-      Exams.belongsTo(models.ClinicHistory, {as: 'clinichistory', foreignKey: 'clinicHistoryId'});
-      Exams.hasMany(models.ExamsImages, {as: 'exams', foreignKey: 'examsId'});
+      Exams.belongsTo(models.ClinicHistory, {foreignKey: 'clinic_history_id', as: 'clinichistory'});
+      Exams.hasMany(models.ExamsImages, {foreignKey: 'exams_id', as: 'exams'});
     }
   }
   Exams.init({
@@ -31,10 +31,9 @@ module.exports = (sequelize, DataTypes) => {
     result: {
       type: DataTypes.STRING
     },
-    clinicHistoryId: {
+    clinic_history_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      field: 'clinic_history_id'
+      allowNull: false
     },
     status: {
       type: DataTypes.STRING,

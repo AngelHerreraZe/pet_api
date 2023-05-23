@@ -5,9 +5,9 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Pets extends Model {
     static associate(models) {
-      Pets.hasMany(models.Appoinment, {as: 'appoinment', foreignKey: 'petId'});
-      Pets.hasMany(models.ClinicHistory, {as: 'clinichistory', foreignKey: 'petId'});
-      Pets.belongsTo(models.Users, {as: 'user', foreignKey: 'userId'});
+      Pets.hasMany(models.Appoinment, {foreignKey: 'pet_id', as: 'appoinment'});
+      Pets.hasMany(models.ClinicHistory, {foreignKey: 'pet_id', as: 'clinichistory'});
+      Pets.belongsTo(models.Users, {foreignKey: 'user_id', as: 'user'});
     }
   }
   Pets.init({
@@ -41,14 +41,12 @@ module.exports = (sequelize, DataTypes) => {
     height: {
       type: DataTypes.FLOAT
     },
-    userId: {
+    user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      field: 'user_id'
     },
-    petimgUrl: {
-      type: DataTypes.STRING,
-      field: 'petimg_url'
+    petimg_url: {
+      type: DataTypes.STRING
     },
     status: {
       type: DataTypes.STRING(20)

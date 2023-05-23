@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      ChImages.belongsTo(models.ClinicHistory, {as: 'clinichistory', foreignKey: 'clinicHistoryId'});
+      ChImages.belongsTo(models.ClinicHistory, {foreignKey: 'clinic_history_id'});
     }
   }
   ChImages.init({
@@ -32,10 +32,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    clinicHistoryId: {
+    clinic_history_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      field: 'clinic_history_id'
     },
     status: {
       type: DataTypes.STRING,

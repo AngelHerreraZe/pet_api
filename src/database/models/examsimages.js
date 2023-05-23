@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class ExamsImages extends Model {
     static associate(models) {
-      ExamsImages.belongsTo(models.Exams,{as: 'exams', foreignKey: 'examsId'});
+      ExamsImages.belongsTo(models.Exams,{foreignKey: 'exams_id', as: 'exams'});
     }
   }
   ExamsImages.init({
@@ -26,10 +26,9 @@ module.exports = (sequelize, DataTypes) => {
     url: {
       type: DataTypes.STRING
     },
-    examsId: {
+    exams_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      field: 'exams_id'
     },
     stats: {
       type: DataTypes.STRING

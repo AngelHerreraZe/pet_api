@@ -20,9 +20,8 @@ module.exports = {
       url: {
         type: Sequelize.STRING
       },
-      examsId: {
+      exams_id: {
         allowNull: false,
-        field: 'exams_id',
         type: Sequelize.INTEGER,
       },
       stats: {

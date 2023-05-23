@@ -33,13 +33,11 @@ module.exports = {
       height: {
         type: Sequelize.FLOAT
       },
-      userId: {
+      user_id: {
         allowNull: false,
-        field: 'user_id',
         type: Sequelize.INTEGER,
       },
-      petimgUrl: {
-        field: 'petimg_url',
+      petimg_url: {
         type: Sequelize.STRING,
       },
       status: {

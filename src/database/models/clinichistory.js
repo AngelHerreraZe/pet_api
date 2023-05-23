@@ -5,11 +5,11 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class ClinicHistory extends Model {
     static associate(models) {
-      ClinicHistory.hasMany(models.Treatment, {as: 'treatment', foreignKey: 'clinicHistoryId'});
-      ClinicHistory.hasMany(models.ChImages, {as: 'chimages', foreignKey: 'clinicHistoryId'});
-      ClinicHistory.hasMany(models.Exams, {as: 'exams', foreignKey: 'clinicHistoryId'});
-      ClinicHistory.belongsTo(models.Pets, {as: 'pet', foreignKey: 'petId'});
-      ClinicHistory.belongsTo(models.Vet, {as: 'vet', foreignKey: 'vetId'});
+      ClinicHistory.hasMany(models.Treatment, {foreignKey: 'clinic_history_id', as: 'treatment'});
+      ClinicHistory.hasMany(models.ChImages, {foreignKey: 'clinic_history_id', as: 'chimages'});
+      ClinicHistory.hasMany(models.Exams, {foreignKey: 'clinic_history_id', as: 'exams'});
+      ClinicHistory.belongsTo(models.Pets, {foreignKey: 'pet_id',as: 'pet'});
+      ClinicHistory.belongsTo(models.Vet, {foreignKey: 'vet_id', as: 'vet'});
     }
   }
   ClinicHistory.init({
@@ -27,15 +27,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       allowNull: false
     },
-    petId: {
+    pet_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      field: 'pet_id'
     },
-    vetId: {
+    vet_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      field: 'vet_id'
     },
     status: {
       type: DataTypes.STRING,

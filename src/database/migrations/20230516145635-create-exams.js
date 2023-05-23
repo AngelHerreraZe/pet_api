@@ -24,9 +24,8 @@ module.exports = {
       result: {
         type: Sequelize.STRING
       },
-      clinicHistoryId: {
+      clinic_history_id: {
         allowNull: false,
-        field: 'clinic_history_id',
         type: Sequelize.INTEGER,
       },
       status: {

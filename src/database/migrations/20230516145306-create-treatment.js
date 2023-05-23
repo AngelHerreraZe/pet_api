@@ -12,19 +12,16 @@ module.exports = {
       description: {
         type: Sequelize.STRING
       },
-      initDate: {
+      init_date: {
         allowNull: false,
-        field: 'init_date',
         type: Sequelize.DATE,
       },
-      endDate: {
+      end_date: {
         allowNull: false,
-        field: 'end_date',
         type: Sequelize.DATE,
       },
-      clinicHistoryId: {
+      clinic_history_id: {
         allowNull: false,
-        field: 'clinic_history_id',
         type: Sequelize.INTEGER,
       },
       status: {

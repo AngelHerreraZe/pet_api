@@ -6,7 +6,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Users extends Model {
     static associate(models) {
-      Users.hasMany(models.Pets, {as: 'pet', foreignKey: 'userId'});
+      Users.hasMany(models.Pets, {foreignKey: 'user_id', as: 'pet'});
     }
   }
   Users.init({
@@ -33,16 +33,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    passwordChangeAt: {
+    password_change_at: {
       type: DataTypes.DATE,
     },
     role: {
       type: DataTypes.STRING,
       defaultValue: "USER",
     },
-    profileImgUrl: {
+    profile_img_url: {
       type: DataTypes.STRING,
-      field: 'profile_img_url',
       defaultValue: 'https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png'
     },
     status: {

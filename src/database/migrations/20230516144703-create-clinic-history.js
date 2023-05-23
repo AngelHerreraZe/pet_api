@@ -10,19 +10,24 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       description: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        allowNull: false
       },
       date: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false
       },
-      petId: {
-        type: Sequelize.INTEGER
+      pet_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
-      vetId: {
-        type: Sequelize.INTEGER
+      vet_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       status: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,

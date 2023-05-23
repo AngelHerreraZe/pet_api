@@ -15,12 +15,10 @@ module.exports = {
       reason: {
         type: Sequelize.STRING
       },
-      petId: {
-        field: 'pet_id',
+      pet_id: {
         type: Sequelize.INTEGER,
       },
-      vetId: {
-        field: 'vet_id',
+      vet_id: {
         type: Sequelize.INTEGER,
       },
       status: {

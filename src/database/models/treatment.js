@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Treatment extends Model {
     static associate(models) {
-      Treatment.belongsTo(models.ClinicHistory, {as: 'clinichistory', foreignKey: 'clinicHistoryId'});
+      Treatment.belongsTo(models.ClinicHistory, {foreignKey: 'clinic_history_id', as: 'clinichistory'});
     }
   }
   Treatment.init({
@@ -18,20 +18,17 @@ module.exports = (sequelize, DataTypes) => {
     description: {
       type: DataTypes.STRING
     },
-    initDate: {
+    init_date: {
       type: DataTypes.DATE,
       allowNull: false,
-      field: 'init_date'
     },
-    endDate: {
+    end_date: {
       type: DataTypes.DATE,
       allowNull: false,
-      field: 'end_date'
     },
-    clinicHistoryId: {
+    clinic_history_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      field: 'clinic_history_id'
     },
     status: {
       type: DataTypes.STRING,

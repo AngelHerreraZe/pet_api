@@ -26,15 +26,14 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      passwordChangeAt: {
+      password_change_at: {
         type: Sequelize.DATE
       },
       role: {
         defaultValue: "USER",
         type: Sequelize.STRING,
       },
-      profileImgUrl: {
-        field: 'profile_img_url',
+      profile_img_url: {
         defaultValue: 'https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png',
         type: Sequelize.STRING,
       },
