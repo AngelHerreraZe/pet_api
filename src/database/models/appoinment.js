@@ -3,13 +3,13 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Appoinment extends Model {
+  class Appointment extends Model {
     static associate(models) {
-      Appoinment.belongsTo(models.Pets, {foreignKey: 'pet_id'});
-      Appoinment.belongsTo(models.Vet, {foreignKey: 'vet_id'});
+      Appointment.belongsTo(models.Pets, {foreignKey: 'pet_id'});
+      Appointment.belongsTo(models.Vet, {foreignKey: 'vet_id'});
     }
   }
-  Appoinment.init({
+  Appointment.init({
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -38,8 +38,8 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     sequelize,
-    modelName: 'Appoinment',
-    tableName: 'appoinments'
+    modelName: 'Appointment',
+    tableName: 'appointments'
   });
-  return Appoinment;
+  return Appointment;
 };

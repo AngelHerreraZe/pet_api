@@ -27,6 +27,12 @@ module.exports = {
       clinic_history_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        references: {
+          model: 'clinic_histories',
+          key: 'id'
+        }, 
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE'
       },
       status: {
         allowNull: false,

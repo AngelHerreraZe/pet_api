@@ -19,11 +19,23 @@ module.exports = {
       },
       pet_id: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'pets',
+          key: 'id'
+        },
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE'
       },
       vet_id: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'vets',
+          key: 'id'
+        }, 
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE'
       },
       status: {
         type: Sequelize.STRING,

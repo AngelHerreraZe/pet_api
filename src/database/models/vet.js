@@ -5,8 +5,8 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Vet extends Model {
     static associate(models) {
-      Vet.hasMany(models.ClinicHistory, {foreignKey: 'vet_id', as: 'clinichistory'});
-      Vet.hasMany(models.Appoinment, {foreignKey: 'vet_id', as: 'appoinment'});
+      Vet.hasMany(models.ClinicHistory, {foreignKey: 'vet_id'});
+      Vet.hasMany(models.Appointment, {foreignKey: 'vet_id'});
     }
   }
   Vet.init({

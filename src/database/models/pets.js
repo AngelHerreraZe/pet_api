@@ -5,9 +5,9 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Pets extends Model {
     static associate(models) {
-      Pets.hasMany(models.Appoinment, {foreignKey: 'pet_id', as: 'appoinment'});
-      Pets.hasMany(models.ClinicHistory, {foreignKey: 'pet_id', as: 'clinichistory'});
-      Pets.belongsTo(models.Users, {foreignKey: 'user_id', as: 'user'});
+      Pets.belongsTo(models.Users, {foreignKey: 'user_id'});
+      Pets.hasMany(models.Appointment, {foreignKey: 'pet_id'});
+      Pets.hasMany(models.ClinicHistory, {foreignKey: 'pet_id'});
     }
   }
   Pets.init({

@@ -36,6 +36,12 @@ module.exports = {
       user_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        references: {
+          model: 'users',
+          key: 'id',
+        }, 
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE'
       },
       petimg_url: {
         type: Sequelize.STRING,

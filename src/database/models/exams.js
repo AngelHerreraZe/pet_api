@@ -5,8 +5,8 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Exams extends Model {
     static associate(models) {
-      Exams.belongsTo(models.ClinicHistory, {foreignKey: 'clinic_history_id', as: 'clinichistory'});
-      Exams.hasMany(models.ExamsImages, {foreignKey: 'exams_id', as: 'exams'});
+      Exams.belongsTo(models.ClinicHistory, {foreignKey: 'clinic_history_id'});
+      Exams.hasMany(models.ExamsImages, {foreignKey: 'exams_id'});
     }
   }
   Exams.init({
