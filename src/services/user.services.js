@@ -35,6 +35,20 @@ class UserServices {
     }
   }
 
+  static async getUserInfo(username){
+    try {
+      const user = await db.Users.findOne({
+        where: { username },
+        attributes: {
+          exclude: ["password", "password_change_at", "role", "status", "createdAt", "updatedAt"]
+        }
+      });
+      return user;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   static async updateUser(id, updatedInfo) {
     try {
       const user = await db.Users.update(updatedInfo, {

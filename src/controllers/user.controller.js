@@ -25,6 +25,15 @@ const createUser = async (req, res, next) => {
   }
 };
 
+const getUserInfo = async (req, res, next) => {
+  try {
+    const user = await UserServices.getUserInfo(req.user.username);
+    res.json(user);
+  } catch (error) {
+    next(error);
+  }
+}
+
 const userLogin = async (req, res, next) => {
   try {
     const { name, password } = req.body;
@@ -145,4 +154,5 @@ module.exports = {
   updateUserInfo,
   changePassword,
   deleteUser,
+  getUserInfo
 };
