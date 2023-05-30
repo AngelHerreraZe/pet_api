@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Vet.hasMany(models.ClinicHistory, {foreignKey: 'vet_id'});
       Vet.hasMany(models.Appointment, {foreignKey: 'vet_id'});
+      Vet.belongsTo(models.Users, {foreignKey: 'user_id'});
     }
   }
   Vet.init({
@@ -19,6 +20,9 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
     },
     specialty: {
       type: DataTypes.STRING,

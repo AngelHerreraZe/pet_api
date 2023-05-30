@@ -27,7 +27,7 @@ const createUser = async (req, res, next) => {
 
 const getUserInfo = async (req, res, next) => {
   try {
-    const user = await UserServices.getUserInfo(req.user.username);
+    const user = await UserServices.getUserInfo(req.user.id);
     res.json(user);
   } catch (error) {
     next(error);
@@ -53,12 +53,13 @@ const userLogin = async (req, res, next) => {
         errorName: 'Invalid password',
       });
     }
-    const { id, username, email } = user;
-    const token = AuthServices.genToken({ id, username, email });
+    const { id, username, email, role } = user;
+    const token = AuthServices.genToken({ id, username, email, role });
     res.json({
       id,
       username,
       email,
+      role,
       token,
     });
   } catch (error) {

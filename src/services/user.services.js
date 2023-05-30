@@ -13,7 +13,7 @@ class UserServices {
 
   static async update(id, updatedInfo) {
     try {
-      const updatedUser = await Users.update(updatedInfo, {
+      const updatedUser = await db.Users.update(updatedInfo, {
         where: { id },
       });
       return updatedUser;
@@ -35,10 +35,10 @@ class UserServices {
     }
   }
 
-  static async getUserInfo(username){
+  static async getUserInfo(id){
     try {
       const user = await db.Users.findOne({
-        where: { username },
+        where: { id },
         attributes: {
           exclude: ["password", "password_change_at", "role", "status", "createdAt", "updatedAt"]
         }

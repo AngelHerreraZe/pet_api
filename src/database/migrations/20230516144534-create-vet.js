@@ -13,6 +13,16 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
+      user_id: {
+        type: Sequelize.INTEGER,
+        unique: true,
+        references: {
+          model: 'users',
+          key: 'id'
+        },
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE'
+      },
       specialty: {
         allowNull: false,
         type: Sequelize.STRING,
