@@ -35,13 +35,20 @@ class UserServices {
     }
   }
 
-  static async getUserInfo(id){
+  static async getUserInfo(id) {
     try {
       const user = await db.Users.findOne({
         where: { id },
         attributes: {
-          exclude: ["password", "password_change_at", "role", "status", "createdAt", "updatedAt"]
-        }
+          exclude: [
+            'password',
+            'password_change_at',
+            'role',
+            'status',
+            'createdAt',
+            'updatedAt',
+          ],
+        },
       });
       return user;
     } catch (error) {
@@ -83,6 +90,21 @@ class UserServices {
         where: { id },
       });
       return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  static async updatePhoto(id, imageUrl){
+    try {
+      const result = await db.Users.update({
+        profile_img_url: imageUrl
+      },{
+        where: {
+          id
+        }
+      });
+      return result
     } catch (error) {
       throw error;
     }

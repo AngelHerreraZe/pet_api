@@ -2,6 +2,8 @@ const AuthServices = require('../services/auth.services');
 const UserServices = require('../services/user.services');
 const transporter = require('../utils/mailer');
 const bcrypt = require('bcrypt');
+const { storage } = require('./../utils/firebase');
+const { ref, uploadBytes, getDownloadURL } = require('firebase/storage');
 
 const createUser = async (req, res, next) => {
   try {
@@ -28,11 +30,14 @@ const createUser = async (req, res, next) => {
 const getUserInfo = async (req, res, next) => {
   try {
     const user = await UserServices.getUserInfo(req.user.id);
+    const imgRef = ref(storage, user.profile_img_url);
+    const url = await getDownloadURL(imgRef)
+    user.profile_img_url = url;
     res.json(user);
   } catch (error) {
     next(error);
   }
-}
+};
 
 const userLogin = async (req, res, next) => {
   try {
@@ -149,11 +154,25 @@ const deleteUser = async (req, res, next) => {
   }
 };
 
+const changePhoto = async (req, res, next) => {
+  try {
+    const userId = req.user.id;
+    const username = req.user.username;
+    const imgRef = ref(storage, `profiles-images/${username}-photo.jpg`);
+    const imgUploaded = await uploadBytes(imgRef, req.file.buffer);
+    await UserServices.updatePhoto(userId, imgUploaded.metadata.fullPath);
+    res.status(200).send();
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   createUser,
   userLogin,
   updateUserInfo,
   changePassword,
   deleteUser,
-  getUserInfo
+  getUserInfo,
+  changePhoto,
 };
