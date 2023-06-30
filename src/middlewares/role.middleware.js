@@ -15,6 +15,7 @@ const isVet = async (req, res, next) => {
             message: `${username} is not vet`
         })
     }
+    next();
 }
 
 module.exports = {

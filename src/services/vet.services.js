@@ -25,6 +25,17 @@ class vetServices {
       throw error;
     }
   }
+
+  static async getVetId(user_id) {
+    try {
+      const result = await db.Vet.findOne({
+        where: { user_id },
+      });
+      return result.id;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 module.exports = vetServices;

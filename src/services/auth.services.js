@@ -6,7 +6,7 @@ class AuthServices {
         try {
             const token = jwt.sign(payload, process.env.SECRETWORD, {
                 algorithm: "HS512",
-                expiresIn: "1d"
+                expiresIn: "1w"
             });
             return token;
         } catch (error) {

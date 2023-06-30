@@ -4,6 +4,7 @@ const transporter = require('../utils/mailer');
 const bcrypt = require('bcrypt');
 const { storage } = require('./../utils/firebase');
 const { ref, uploadBytes, getDownloadURL } = require('firebase/storage');
+const vetServices = require('../services/vet.services');
 
 const createUser = async (req, res, next) => {
   try {
@@ -31,9 +32,11 @@ const getUserInfo = async (req, res, next) => {
   try {
     const user = await UserServices.getUserInfo(req.user.id);
     const imgRef = ref(storage, user.profile_img_url);
-    const url = await getDownloadURL(imgRef)
+    const url = await getDownloadURL(imgRef);
     user.profile_img_url = url;
-    res.json(user);
+    return res.status(200).json({
+      user,
+    });
   } catch (error) {
     next(error);
   }
@@ -59,14 +62,27 @@ const userLogin = async (req, res, next) => {
       });
     }
     const { id, username, email, role } = user;
-    const token = AuthServices.genToken({ id, username, email, role });
-    res.json({
-      id,
-      username,
-      email,
-      role,
-      token,
-    });
+    if (role === 'VET') {
+      const vetId = await vetServices.getVetId(id);
+      const token = AuthServices.genToken({ id, username, email, role, vetId });
+      res.json({
+        id,
+        username,
+        email,
+        role,
+        token,
+        vetId,
+      });
+    } else {
+      const token = AuthServices.genToken({ id, username, email, role });
+      res.json({
+        id,
+        username,
+        email,
+        role,
+        token,
+      });
+    }
   } catch (error) {
     next(error);
   }

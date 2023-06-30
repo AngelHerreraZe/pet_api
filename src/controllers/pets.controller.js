@@ -1,10 +1,12 @@
 const petsServices = require('../services/pets.services');
+const { storage } = require('./../utils/firebase');
+const { ref, uploadBytes, getDownloadURL } = require('firebase/storage');
 
 const createPet = async (req, res, next) => {
   try {
     const newPet = req.body;
     const user_id = req.user.id;
-    const result = await petsServices.create(user_id, newPet);
+    await petsServices.create(user_id, newPet);
     res.status(201).send();
   } catch (error) {
     next(error);
@@ -62,9 +64,20 @@ const deletePet = async (req, res, next) => {
   }
 };
 
+const changePetPhoto = async (req, res, next) => {
+  try {
+    const { petId } = req.params;
+    const userId = req.user.id;
+    const petInfo = await petsServices.getOnePet(petId, userId)
+    const imgRef = ref(storage, `pet-images/${petInfo.name}`)
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   createPet,
   getPets,
   modifyPet,
-  deletePet
+  deletePet,
 };
