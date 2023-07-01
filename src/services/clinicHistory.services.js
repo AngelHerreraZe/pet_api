@@ -30,24 +30,54 @@ class clinicHistoryServices {
     }
   }
 
-  static async getClinicHS(pet_id) {
+  static async getClinicHS(id) {
     try {
       const result = await db.ClinicHistory.findAll({
-        where: { pet_id },
+        where: { id },
         attributes: {
           exclude: ['createdAt', 'updatedAt'],
         },
-        include: {
-          model: db.Pets,
-          attributes: {
-            exclude: ['createdAt', 'updatedAt'],
+        include: [
+          {
+            model: db.Pets,
+            attributes: {
+              exclude: ['createdAt', 'updatedAt'],
+            },
           },
-          model: db.Vet,
-          attributes: {
-            exclude: ['createdAt', 'updatedAt', 'user_id'],
+          {
+            model: db.Vet,
+            attributes: {
+              exclude: ['createdAt', 'updatedAt', 'user_id'],
+            },
           },
-        },
+          {
+            model: db.ChImages,
+            attributes: {
+              exclude: ['createdAt', 'updatedAt', 'clinic_history_id'],
+            },
+          }
+        ],
       });
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  static async uploadPhotosHS(clinic_history_id, information, imgRefs) {
+    try {
+      const { title, description, status } = information;
+      const arraryToCreate = [];
+      for (let i = 0; i < imgRefs.length; i++) {
+        arraryToCreate.push({
+          title,
+          description,
+          url: imgRefs[i],
+          clinic_history_id,
+          status,
+        });
+      }
+      const result = await db.ChImages.bulkCreate(arraryToCreate);
       return result;
     } catch (error) {
       throw error;
